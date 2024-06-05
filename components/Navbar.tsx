@@ -1,11 +1,13 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { MobileNav } from "@/components/MobileNav";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 const Navbar = () => {
   // Replace with your auth of choice, e.g. Clerk: const { userId } = auth();
@@ -60,23 +62,20 @@ const Navbar = () => {
                   >
                     Pricing
                   </Link>
-                  <Link
-                    className={buttonVariants({
-                      variant: "ghost",
+                    <LoginLink
+                      className={buttonVariants({
+                        variant: "ghost",
+                        size: "sm",
+                    })}>
+                      Sign in
+                    </LoginLink>
+
+          
+                  <RegisterLink className={buttonVariants({
                       size: "sm",
-                    })}
-                    href="/sign-in"
-                  >
-                    Sign in
-                  </Link>
-                  <Link
-                    className={buttonVariants({
-                      size: "sm",
-                    })}
-                    href="/sign-up"
-                  >
-                    Get started
-                  </Link>
+                    })}>
+                      Register
+                  </RegisterLink>
                 </>
               ) : (
                 <>

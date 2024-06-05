@@ -3,6 +3,8 @@ import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import ConvexClientProvider from "./ConvexClientProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Mark-It",
@@ -22,7 +24,10 @@ export default function RootLayout({
           GeistSans.className,
         )}
       >
+        <ConvexClientProvider>
         {children}
+        <Toaster/>
+        </ConvexClientProvider>
       </body>
     </html>
   );
