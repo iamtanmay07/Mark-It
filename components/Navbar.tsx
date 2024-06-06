@@ -60,11 +60,8 @@ const Navbar = () => {
               {!isAuthenticated ? (
                 <>
                   <Dialog>
-                    <DialogTrigger>
-                      <Button className={`${buttonVariants({
-                        variant: "ghost",
-                        size: "sm",
-                      })} bg-transparent text-black mr-[-10px]`}>Pricing</Button>
+                    <DialogTrigger className="mr-[-16px] hover:bg-accent hover:text-accent-foreground bg-transparent text-black h-9 rounded-md px-3 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      Pricing
                     </DialogTrigger>
                     <PricingDialog />
                   </Dialog>
