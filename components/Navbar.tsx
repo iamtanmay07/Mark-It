@@ -7,6 +7,8 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { MobileNav } from "@/components/MobileNav";
 import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+import { Dialog, DialogTrigger } from "./ui/dialog";
+import PricingDialog from "@/app/(routes)/dashboard/_components/PricingDialog";
 
 
 // type NavbarProps = {
@@ -47,9 +49,9 @@ const Navbar = () => {
               <MobileNav />
             ) : (
               <LogoutLink
-              className={buttonVariants({
-                size: "sm",
-              })}>
+                className={buttonVariants({
+                  size: "sm",
+                })}>
                 Logout
               </LogoutLink>
             )}
@@ -57,7 +59,17 @@ const Navbar = () => {
             <div className="hidden items-center space-x-4 sm:flex">
               {!isAuthenticated ? (
                 <>
-                  <Link
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button className={`${buttonVariants({
+                        variant: "ghost",
+                        size: "sm",
+                      })} bg-transparent text-black mr-[-10px]`}>Pricing</Button>
+                    </DialogTrigger>
+                    <PricingDialog />
+                  </Dialog>
+
+                  {/* <Link
                     href="/pricing"
                     className={buttonVariants({
                       variant: "ghost",
@@ -65,28 +77,28 @@ const Navbar = () => {
                     })}
                   >
                     Pricing
-                  </Link>
-                    <LoginLink
-                      className={buttonVariants({
-                        variant: "ghost",
-                        size: "sm",
-                    })}>
-                      Sign in
-                    </LoginLink>
-
-          
-                  <RegisterLink className={buttonVariants({
+                  </Link> */}
+                  <LoginLink
+                    className={buttonVariants({
+                      variant: "ghost",
                       size: "sm",
                     })}>
-                      Register
+                    Sign in
+                  </LoginLink>
+
+
+                  <RegisterLink className={buttonVariants({
+                    size: "sm",
+                  })}>
+                    Register
                   </RegisterLink>
                 </>
               ) : (
                 <>
                   <LogoutLink
-                  className={buttonVariants({
-                    size: "sm",
-                  })}>
+                    className={buttonVariants({
+                      size: "sm",
+                    })}>
                     Logout
                   </LogoutLink>
                 </>

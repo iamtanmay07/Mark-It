@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import SideNav from './_components/SideNav';
 import { FileListContext } from '@/app/_context/FilesListContext';
-
+import SideNavTopSection from './_components/SideNavTopSection';
+import SideNavBottomSection from './_components/SideNavBottomSection';
 function DashboardLayout(
     {
         children,
@@ -36,11 +37,22 @@ function DashboardLayout(
     <div>
       <FileListContext.Provider value={{fileList_,setFileList_}}>
       <div className='grid grid-cols-4'>
-          <div className='bg-white h-screen w-72 fixed'>
-          <SideNav/>
+          {/* only for mobile version */}
+          <div className='bg-white sm:hidden ml-[80px] pt-[10px] flex justify-center items-center' >
+            <SideNavTopSection/>
           </div>
-          <div className='col-span-4 ml-72'>
-          {children}
+          {/* only for bigger display */}
+          <div className='bg-white h-screen w-72 sm:fixed hidden sm:block' >
+            <SideNav/>
+          </div>
+
+          <div className='col-span-4 sm:ml-72 ml-0'>
+            {children}
+          </div>
+
+          {/* only for mobile version */}
+          <div className='bg-white w-72 sm:hidden flex flex-col justify-center items-center'>
+            <SideNavBottomSection/>
           </div>
       </div>
       </FileListContext.Provider>

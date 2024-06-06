@@ -12,11 +12,11 @@ import {
 import Link from 'next/link'
 function PricingDialog() {
   return (
-    <DialogContent className='max-w-4xl'>
+    <DialogContent className='sm:max-w-[700px] sm:max-h-[600px] max-w-[300px]'>
     <DialogHeader>
-      <DialogTitle>Upgrade Plan</DialogTitle>
+      <DialogTitle className='flex justify-center items-center text-bold text-lg sm:text-2xl'>Upgrade Plan</DialogTitle>
       <DialogDescription>
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div className="mx-auto sm:max-w-3xl sm:px-6 sm:py-12 lg:px-8 sm:max-h-[600px]">
   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center md:gap-8">
     <div
       className="rounded-2xl border border-indigo-600 p-6 shadow-sm ring-1 ring-indigo-600 sm:order-last sm:px-8 lg:p-12"
@@ -36,98 +36,30 @@ function PricingDialog() {
 
       <ul className="mt-6 space-y-2">
         <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
-
-          <span className="text-gray-700"> Everything included in free, plus: </span>
-        </li>
-
-        <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
-
-          <span className="text-gray-700"> Unlimited Team Files </span>
-        </li>
-
-        <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
-
-          <span className="text-gray-700"> Exclusive access to Tubeguruji.com content </span>
-        </li>
-
-        <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
-
-          <span className="text-gray-700"> More document features </span>
-        </li>
-
-        <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+          
 
           <span className="text-gray-700"> Email Support </span>
         </li>
 
         <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
 
-          <span className="text-gray-700"> Instagram support </span>
+          <span className="text-gray-700"> Unlimited Team Files </span>
         </li>
+
+        <li className="flex items-center gap-1">
+
+          <span className="text-gray-700"> Github Integration </span>
+        </li>
+
+        <li className="flex items-center gap-1">
+          
+          <span className="text-gray-700"> More document features </span>
+        </li>
+
       </ul>
 
       <Link
-        href="https://www.buymeacoffee.com/tubegurujiw/membership"
+        href=""
         className="mt-8 block rounded-full border border-indigo-600
          bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
       >
@@ -151,61 +83,25 @@ function PricingDialog() {
 
       <ul className="mt-6 space-y-2">
         <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+         
 
           <span className="text-gray-700"> 5 Team files </span>
         </li>
 
         <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+          
 
-          <span className="text-gray-700"> Limited Access to Tubeguruji.com </span>
+          <span className="text-gray-700"> Limited Access </span>
         </li>
 
         <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+          
 
           <span className="text-gray-700"> Limited Document feature </span>
         </li>
 
         <li className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-5 text-indigo-700"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+          
 
           <span className="text-gray-700"> Email Support </span>
         </li>
