@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 export const SideNav = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ export const SideNav = () => {
   return (
     <div className="space-y-4 flex flex-col h-full text-primary bg-secondary">
       <div className="p-3 flex flex-1 justify-center">
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           {routes.map((route) => (
             <div
               onClick={() => onNavigate(route.href)}
@@ -42,6 +43,43 @@ export const SideNav = () => {
               </div>
             </div>
           ))}
+        </div> */}
+        <div className="space-y-2">
+            <div
+              onClick={() => onNavigate("/pricing")}
+              className={cn(
+                "border border-input text-foreground text-center text-base group flex p-2 w-full justify-start font-normal cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition",
+                  "bg-primary/80 text-slate-100 hover:bg-primary hover:text-slate-100"
+              )}
+            >
+              <div className="flex flex-col gap-y-2 items-center flex-1">
+                Pricing
+              </div>
+            </div>
+            <div
+              className={cn(
+                "border border-input text-foreground text-center text-base group flex p-2 w-full justify-start font-normal cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition",
+                  "bg-primary/80 text-slate-100 hover:bg-primary hover:text-slate-100"
+              )}
+            >
+              <div className="flex flex-col gap-y-2 items-center flex-1">
+                <LoginLink>
+                Sign in
+                </LoginLink>
+              </div>
+            </div>
+            <div
+              className={cn(
+                "border border-input text-foreground text-center text-base group flex p-2 w-full justify-start font-normal cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition",
+                  "bg-primary/80 text-slate-100 hover:bg-primary hover:text-slate-100"
+              )}
+            >
+              <div className="flex flex-col gap-y-2 items-center flex-1">
+                <RegisterLink>
+                Register
+                </RegisterLink>
+              </div>
+            </div>
         </div>
       </div>
     </div>

@@ -9,8 +9,8 @@ function WorkspaceHeader({onSave}:any) {
   return (
     <div className='p-3 border-b flex justify-between items-center'>
       <div className='flex gap-2 items-center'>
-        <a href="/">
-          <Image src={'/form.png'}
+        <a href="/dashboard">
+          <Image src={'/logo.png'}
             alt='logo'
             height={40}
             width={40} />

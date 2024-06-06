@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import ConvexClientProvider from "./ConvexClientProvider";
 import { Toaster } from "@/components/ui/sonner";
-
 export const metadata: Metadata = {
   title: "Mark-It",
   description: "Mark It, Note It, Remember It.",
@@ -20,12 +19,14 @@ export default function RootLayout({
     <html lang="en" className="light">
       <body
         className={cn(
-          "grainy flex min-h-screen flex-col font-sans antialiased",
+          "flex min-h-screen flex-col font-sans antialiased",
           GeistSans.className,
         )}
       >
         <ConvexClientProvider>
-        {children}
+
+          {children}
+
         <Toaster/>
         </ConvexClientProvider>
       </body>

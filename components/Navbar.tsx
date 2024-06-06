@@ -1,17 +1,24 @@
-"use client"
+
 import Link from "next/link";
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { MobileNav } from "@/components/MobileNav";
-import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+
+
+// type NavbarProps = {
+//   isAuthenticated : boolean;
+// }
 
 const Navbar = () => {
   // Replace with your auth of choice, e.g. Clerk: const { userId } = auth();
   const isUserSignedIn = false;
+  const isAuthenticated = false;
+  // const { isAuthenticated } = getKindeServerSession();
+  // you cannot use getKindeServerSession in the client side 
 
   return (
     <nav
@@ -39,19 +46,16 @@ const Navbar = () => {
             {!isUserSignedIn ? (
               <MobileNav />
             ) : (
-              <Link
-                className={buttonVariants({
-                  size: "sm",
-                  className: "sm:hidden mr-3",
-                })}
-                href="/dashboard"
-              >
-                Dashboard
-              </Link>
+              <LogoutLink
+              className={buttonVariants({
+                size: "sm",
+              })}>
+                Logout
+              </LogoutLink>
             )}
 
             <div className="hidden items-center space-x-4 sm:flex">
-              {!isUserSignedIn ? (
+              {!isAuthenticated ? (
                 <>
                   <Link
                     href="/pricing"
@@ -79,22 +83,20 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <Link
-                    className={buttonVariants({
-                      size: "sm",
-                    })}
-                    href="/dashboard"
-                  >
-                    Dashboard
-                  </Link>
+                  <LogoutLink
+                  className={buttonVariants({
+                    size: "sm",
+                  })}>
+                    Logout
+                  </LogoutLink>
                 </>
               )}
             </div>
 
             {/* User profile mockup below, e.g using Clerk: <UserButton afterSignOutUrl="/" /> */}
-            {isUserSignedIn && (
+            {/* {isUserSignedIn && (
               <div className="bg-emerald-600 border-2 border-black shadow-lg rounded-full w-10 h-10"></div>
-            )}
+            )} */}
           </div>
         </div>
       </MaxWidthWrapper>

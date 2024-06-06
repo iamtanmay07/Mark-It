@@ -2,18 +2,20 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-
+import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
+
+
 export default function Home() {
   return (
     <>
-      <Navbar />
-
+      <Navbar/>
+      <div className="grainy">
       {/* Hero */}
       <MaxWidthWrapper className="mt-10 flex flex-col items-center justify-center text-center sm:mt-12">
         <div className="mx-auto mt-[40px] mb-[60px] flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50">
@@ -385,6 +387,7 @@ export default function Home() {
       </MaxWidthWrapper>
 
       <Footer />
+      </div>
     </>
   );
 }
