@@ -2,25 +2,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-
+import { Dialog, DialogTrigger } from "./ui/dialog";
+import PricingDialog from "@/app/(routes)/dashboard/_components/PricingDialog";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { MobileNav } from "@/components/MobileNav";
 import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
-import { Dialog, DialogTrigger } from "./ui/dialog";
-import PricingDialog from "@/app/(routes)/dashboard/_components/PricingDialog";
-
 
 // type NavbarProps = {
 //   isAuthenticated : boolean;
 // }
 
 const Navbar = () => {
-  // Replace with your auth of choice, e.g. Clerk: const { userId } = auth();
-  const isUserSignedIn = false;
   const isAuthenticated = false;
-  // const { isAuthenticated } = getKindeServerSession();
-  // you cannot use getKindeServerSession in the client side 
+
 
   return (
     <nav
@@ -45,7 +40,7 @@ const Navbar = () => {
             <span className="text-2xl font-semibold">Mark-It</span>
           </Link>
           <div className="flex gap-1 sm:gap-4 items-center">
-            {!isUserSignedIn ? (
+            {!isAuthenticated ? (
               <MobileNav />
             ) : (
               <LogoutLink
@@ -66,15 +61,7 @@ const Navbar = () => {
                     <PricingDialog />
                   </Dialog>
 
-                  {/* <Link
-                    href="/pricing"
-                    className={buttonVariants({
-                      variant: "ghost",
-                      size: "sm",
-                    })}
-                  >
-                    Pricing
-                  </Link> */}
+              
                   <LoginLink
                     className={buttonVariants({
                       variant: "ghost",
@@ -102,10 +89,6 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* User profile mockup below, e.g using Clerk: <UserButton afterSignOutUrl="/" /> */}
-            {/* {isUserSignedIn && (
-              <div className="bg-emerald-600 border-2 border-black shadow-lg rounded-full w-10 h-10"></div>
-            )} */}
           </div>
         </div>
       </MaxWidthWrapper>

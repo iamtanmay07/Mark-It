@@ -8,7 +8,7 @@ export default function Footer() {
         <span className="block text-sm text-muted-foreground sm:text-center">
         <a
             target="_blank"
-            href="https://tryconvo.vercel.app/"
+            href="https://markit.vercel.app/"
             className="hover:underline"
           >
             Mark-It
