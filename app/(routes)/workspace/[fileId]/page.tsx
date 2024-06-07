@@ -48,18 +48,24 @@ function Workspace({ params }: any) {
   const [activeTab, setActiveTab] = useState(Tabs[1].name);
   const [triggerSave, setTriggerSave] = useState(false);
 
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
-    };
+    useEffect(() => {
+        // Ensure the code runs only in the browser
+        if (typeof window !== 'undefined') {
+            // Initial check
+            setIsSmallScreen(window.innerWidth < 768);
 
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+            const handleResize = () => {
+                setIsSmallScreen(window.innerWidth < 768);
+            };
+
+            window.addEventListener('resize', handleResize);
+
+            // Cleanup function to remove the event listener
+            return () => window.removeEventListener('resize', handleResize);
+        }
+    }, []);
 
   return (
     <div className="overflow-hidden w-full">
