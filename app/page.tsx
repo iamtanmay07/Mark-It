@@ -42,7 +42,7 @@ export default function Home() {
           )}
           href={"/dashboard"}
         >
-          Try Mark-It
+          Dashboard
         </Link>
       </MaxWidthWrapper>
 

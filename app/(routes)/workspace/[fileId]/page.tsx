@@ -1,18 +1,31 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import WorkspaceHeader from '../_components/WorkspaceHeader'
-import Editor from '../_components/Editor'
+// import Editor from '../_components/Editor'
 import { useConvex } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { FILE } from '../../dashboard/_components/FileList';
-import Canvas from '../_components/Canvas';
+// import Canvas from '../_components/Canvas';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+import dynamic from "next/dynamic";
 
+const Editor = dynamic(() => import("../_components/Editor"), {
+  ssr: false,
+});
+
+const Canvas = dynamic(() => import("../_components/Canvas"), {
+  ssr: false,
+});
 function Workspace({params}:any) {
-   const [triggerSave,setTriggerSave]=useState(false);
+
    const convex=useConvex();
    const [fileData,setFileData]=useState<FILE|any>();
    useEffect(()=>{
-    console.log("FILEID",params.fileId)
+    // console.log("FILEID",params.fileId)
     params.fileId&&getFileData();
    },[])
 
@@ -20,29 +33,80 @@ function Workspace({params}:any) {
     const result=await convex.query(api.files.getFileById,{_id:params.fileId})
     setFileData(result);
   }
-  return (
-    <div>
-      <WorkspaceHeader onSave={()=>setTriggerSave(!triggerSave)} />
+  const Tabs = [
+    {
+      name: "Document",
+    },
+    {
+      name: "Both",
+    },
+    {
+      name: "Canvas",
+    },
+  ];
 
-      {/* Workspace Layout  */}
-      <div className='grid grid-cols-1
-      md:grid-cols-2'>
-        {/* Document  */}
-          <div className=' h-screen'>
-            <Editor onSaveTrigger={triggerSave}
+  const [activeTab, setActiveTab] = useState(Tabs[1].name);
+  const [triggerSave, setTriggerSave] = useState(false);
+
+  return (
+    <div className="overflow-hidden w-full">
+      <WorkspaceHeader 
+        Tabs={Tabs}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+        onSave={()=>setTriggerSave(!triggerSave)} 
+        file={fileData}
+      />
+
+{activeTab === "Document" ? (
+        <div
+          style={{
+            height: "calc(100vh - 3rem)",
+          }}
+        >
+          <Editor
+            onSaveTrigger={triggerSave}
             fileId={params.fileId}
-            fileData={fileData}
-            />
-          </div>
-        {/* Whiteboard/canvas  */}
-        <div className=' h-screen border-l'>
-            <Canvas
-             onSaveTrigger={triggerSave}
-             fileId={params.fileId}
-             fileData={fileData}
-            />
+            fileData={fileData!}
+          />
         </div>
-      </div>
+      ) : activeTab === "Both" ? (
+        <ResizablePanelGroup
+          style={{
+            height: "calc(100vh - 3rem)",
+          }}
+          direction="horizontal"
+        >
+          <ResizablePanel defaultSize={50} minSize={20} collapsible={false}>
+            <Editor
+              onSaveTrigger={triggerSave}
+              fileId={params.fileId}
+              fileData={fileData!}
+            />
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={50} minSize={40}>
+            <Canvas
+              onSaveTrigger={triggerSave}
+              fileId={params.fileId}
+              fileData={fileData!}
+            />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      ) : activeTab === "Canvas" ? (
+        <div
+          style={{
+            height: "calc(100vh - 3rem)",
+          }}
+        >
+          <Canvas
+            onSaveTrigger={triggerSave}
+            fileId={params.fileId}
+            fileData={fileData!}
+          />
+        </div>
+      ) : null}
+
     </div>
   )
 }

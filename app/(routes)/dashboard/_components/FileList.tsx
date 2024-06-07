@@ -22,7 +22,7 @@ export interface FILE{
   teamId:string,
   whiteboard:string,
   _id:string,
-  _creationTime:number
+  _creationTime:number,
 }
 function FileList() {
 
