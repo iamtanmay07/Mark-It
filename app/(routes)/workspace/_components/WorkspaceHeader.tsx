@@ -24,7 +24,7 @@ function WorkspaceHeader({
         <h2 className='font-bold hidden sm:block'>Mark-It in Your Way!</h2>
       </div>
 
-      <div className='hidden sm:block ml-[169px]'>
+      <div className='hidden sm:block'>
         <div className="border rounded">
           <div className="flex w-full items-center">
             {
@@ -53,16 +53,16 @@ function WorkspaceHeader({
       </div>
 
       <div className='flex items-center gap-4'>
-        <a
+        {/* <a
           href="https://github.com/iamtanmay07/Mark-It"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <div className="rounded-sm flex text-sm items-center border border-neutral-300 hover:bg-[#F6F6F6] hover:text-accent-foreground bg-transparent text-black cursor-pointer px-2 py-1">
+          <div className="hidden rounded-sm sm:flex text-sm items-center border border-neutral-300 hover:bg-[#F6F6F6] hover:text-accent-foreground bg-transparent text-black cursor-pointer px-2 py-1">
             Give Star on GitHub
             <Github size={16} className="ml-2" />
           </div>
-        </a>
+        </a> */}
         <Button className='h-8 text-[12px]
         gap-2 bg-yellow-500 hover:bg-yellow-600'
           onClick={() => onSave()}

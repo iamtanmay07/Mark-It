@@ -20,17 +20,17 @@ const Editor = dynamic(() => import("../_components/Editor"), {
 const Canvas = dynamic(() => import("../_components/Canvas"), {
   ssr: false,
 });
-function Workspace({params}:any) {
+function Workspace({ params }: any) {
 
-   const convex=useConvex();
-   const [fileData,setFileData]=useState<FILE|any>();
-   useEffect(()=>{
+  const convex = useConvex();
+  const [fileData, setFileData] = useState<FILE | any>();
+  useEffect(() => {
     // console.log("FILEID",params.fileId)
-    params.fileId&&getFileData();
-   },[])
+    params.fileId && getFileData();
+  }, [])
 
-   const getFileData=async()=>{
-    const result=await convex.query(api.files.getFileById,{_id:params.fileId})
+  const getFileData = async () => {
+    const result = await convex.query(api.files.getFileById, { _id: params.fileId })
     setFileData(result);
   }
   const Tabs = [
@@ -48,65 +48,101 @@ function Workspace({params}:any) {
   const [activeTab, setActiveTab] = useState(Tabs[1].name);
   const [triggerSave, setTriggerSave] = useState(false);
 
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="overflow-hidden w-full">
-      <WorkspaceHeader 
+      <WorkspaceHeader
         Tabs={Tabs}
         setActiveTab={setActiveTab}
         activeTab={activeTab}
-        onSave={()=>setTriggerSave(!triggerSave)} 
+        onSave={() => setTriggerSave(!triggerSave)}
         file={fileData}
       />
 
-{activeTab === "Document" ? (
-        <div
-          style={{
-            height: "calc(100vh - 3rem)",
-          }}
-        >
-          <Editor
-            onSaveTrigger={triggerSave}
-            fileId={params.fileId}
-            fileData={fileData!}
-          />
-        </div>
-      ) : activeTab === "Both" ? (
-        <ResizablePanelGroup
-          style={{
-            height: "calc(100vh - 3rem)",
-          }}
-          direction="horizontal"
-        >
-          <ResizablePanel defaultSize={50} minSize={20} collapsible={false}>
+      <div>
+        {activeTab === "Document" ? (
+          <div
+            style={{
+              height: "calc(100vh - 3rem)",
+            }}
+          >
             <Editor
               onSaveTrigger={triggerSave}
               fileId={params.fileId}
               fileData={fileData!}
             />
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel defaultSize={50} minSize={40}>
+          </div>
+        ) : activeTab === "Both" ? (
+          <div className='grid grid-cols-1 md:grid-cols-1'>
+            <ResizablePanelGroup
+              style={{
+                height: "calc(100vh - 3rem)",
+              }}
+              direction={isSmallScreen ? "vertical" : "horizontal"}
+            >
+              <ResizablePanel defaultSize={50} minSize={20} collapsible={false}>
+                <Editor
+                  onSaveTrigger={triggerSave}
+                  fileId={params.fileId}
+                  fileData={fileData!}
+                />
+              </ResizablePanel>
+              <ResizableHandle />
+              <ResizablePanel defaultSize={50} minSize={40}>
+                <Canvas
+                  onSaveTrigger={triggerSave}
+                  fileId={params.fileId}
+                  fileData={fileData!}
+                />
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </div>
+        ) : activeTab === "Canvas" ? (
+          <div
+            style={{
+              height: "calc(100vh - 3rem)",
+            }}
+          >
             <Canvas
               onSaveTrigger={triggerSave}
               fileId={params.fileId}
               fileData={fileData!}
             />
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      ) : activeTab === "Canvas" ? (
-        <div
-          style={{
-            height: "calc(100vh - 3rem)",
-          }}
-        >
-          <Canvas
-            onSaveTrigger={triggerSave}
-            fileId={params.fileId}
-            fileData={fileData!}
-          />
-        </div>
-      ) : null}
+          </div>
+        ) : null}
 
+      </div>
+      {/* <div className='hidden'>
+        <div className='grid grid-cols-1
+     md:grid-cols-2'>
+          <div className=' h-[500px]'>
+            <Editor onSaveTrigger={triggerSave}
+              fileId={params.fileId}
+              fileData={fileData}
+            />
+          </div>
+          <div className=' h-screen'>
+            <Canvas
+              onSaveTrigger={triggerSave}
+              fileId={params.fileId}
+              fileData={fileData}
+            />
+          </div>
+        </div>
+      </div> */} 
+      {/* This thing causes double rendering of the EditorJS despite being the hidden */}
     </div>
   )
 }
