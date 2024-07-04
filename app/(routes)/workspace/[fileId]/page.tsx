@@ -78,7 +78,7 @@ function Workspace({ params }: any) {
       />
 
       <div>
-        {activeTab === "" ? (
+        {activeTab === "Document" ? (
           <div
             style={{
               height: "calc(100vh - 3rem)",
@@ -87,7 +87,7 @@ function Workspace({ params }: any) {
             <Editor
               onSaveTrigger={triggerSave}
               fileId={params.fileId}
-              fileData={fileData!}
+              fileData={fileData}
             />
           </div>
         ) : activeTab === "Both" ? (
@@ -102,7 +102,7 @@ function Workspace({ params }: any) {
                 <Editor
                   onSaveTrigger={triggerSave}
                   fileId={params.fileId}
-                  fileData={fileData!}
+                  fileData={fileData}
                 />
               </ResizablePanel>
               <ResizableHandle />
@@ -110,7 +110,7 @@ function Workspace({ params }: any) {
                 <Canvas
                   onSaveTrigger={triggerSave}
                   fileId={params.fileId}
-                  fileData={fileData!}
+                  fileData={fileData}
                 />
               </ResizablePanel>
             </ResizablePanelGroup>
@@ -124,7 +124,7 @@ function Workspace({ params }: any) {
             <Canvas
               onSaveTrigger={triggerSave}
               fileId={params.fileId}
-              fileData={fileData!}
+              fileData={fileData}
             />
           </div>
         ) : null}
