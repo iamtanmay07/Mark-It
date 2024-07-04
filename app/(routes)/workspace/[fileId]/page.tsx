@@ -78,7 +78,7 @@ function Workspace({ params }: any) {
       />
 
       <div>
-        {activeTab === "Document" ? (
+        {activeTab === "" ? (
           <div
             style={{
               height: "calc(100vh - 3rem)",
