@@ -27,7 +27,7 @@ function WorkspaceHeader({
       <div className='hidden sm:block'>
         <div className="border rounded">
           <div className="flex w-full items-center">
-            {
+            {/* {
               // tabs
               Tabs.map((tab: any) => (
                 <div
@@ -47,7 +47,53 @@ function WorkspaceHeader({
                   <h1 className="text-sm font-medium">{tab.name}</h1>
                 </div>
               ))
-            }
+            } */}
+            <div
+                  // onClick={() => setActiveTab("Document")} 
+                  // removing onClick because it is causing clinet side problem
+                  className={cn(
+                    " cursor-pointer w-24 text-sm text-center hover:bg-[#F6F6F6] hover:text-accent-foreground bg-transparent text-black px-2 py-1",
+                    {
+                      "bg-[#F6F6F6] text-black": "Document" === activeTab,
+                    },
+                    {
+                      "border-r":
+                      "Document" !== Tabs[Tabs.length - 1].name,
+                    }
+                  )}
+                >
+                  <h1 className="text-sm font-medium">Document</h1>
+              </div>
+              <div
+                  onClick={() => setActiveTab("Both")}
+                  className={cn(
+                    " cursor-pointer w-24 text-sm text-center hover:bg-[#F6F6F6] hover:text-accent-foreground bg-transparent text-black px-2 py-1",
+                    {
+                      "bg-[#F6F6F6] text-black": "Both" === activeTab,
+                    },
+                    {
+                      "border-r":
+                      "Both" !== Tabs[Tabs.length - 1].name,
+                    }
+                  )}
+                >
+                  <h1 className="text-sm font-medium">Both</h1>
+              </div>
+              <div
+                  onClick={() => setActiveTab("Canvas")}
+                  className={cn(
+                    " cursor-pointer w-24 text-sm text-center hover:bg-[#F6F6F6] hover:text-accent-foreground bg-transparent text-black px-2 py-1",
+                    {
+                      "bg-[#F6F6F6] text-black": "Canvas" === activeTab,
+                    },
+                    {
+                      "border-r":
+                      "Canvas" !== Tabs[Tabs.length - 1].name,
+                    }
+                  )}
+                >
+                  <h1 className="text-sm font-medium">Canvas</h1>
+              </div>
           </div>
         </div>
       </div>
